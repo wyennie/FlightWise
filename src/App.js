@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import Info from './data.js'
+import { info, getAirportByCode, getAirlineById } from './data.js'
 import './App.css';
 
 const Routes = () => {
   return (
     <table>
       <tbody>
-        {Info.routes.map(info => {
+        {info.routes.map(info => {
+          let id = info.airline
+          let code = info.src
           return (
-            <tr key={info.airline + info.src + info.dest}>
-              <td>{info.airline}</td>
-              <td>{info.src}</td>
+            <tr key={id + code + info.dest}>
+              <td>{getAirlineById(id)}</td>
+              <td>{getAirportByCode(code)}</td>
               <td>{info.dest}</td>
             </tr>
           )
@@ -19,6 +21,7 @@ const Routes = () => {
     </table>
   )
 }
+
 const App = () => (
   <div className="app">
   <header className="header">

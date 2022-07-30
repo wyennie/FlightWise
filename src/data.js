@@ -1395,4 +1395,13 @@ const airports = [
 
 ];
 
-export default {routes, airlines, airports};
+// Add getAirlineById(id) and getAirportByCode(code) functions to data.js
+export const getAirlineById = (id) => {
+  return airlines.find(airline => airline.id === id).name
+}
+
+export const getAirportByCode = (code) => {
+  return airports.find(airport => airport.code === code).name
+}
+
+export const info = {routes, airlines, airports};
