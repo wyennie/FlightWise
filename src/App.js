@@ -3,7 +3,9 @@ import './App.css';
 import DATA from './data.js'
 import Table from './components/Table';
 
-const App = () => { 
+const App = () => {
+  const perPage = 25
+
   const columns = [
     { name: "Airline", property: "airline" },
     { name: "Source Airport", property: "src" },
@@ -28,7 +30,7 @@ const App = () => {
           Welcome to the app!
         </p>
       </section>
-      <Table className='routes-table' columns={columns} rows={DATA} format={formatValue} />
+      <Table className='routes-table' columns={columns} rows={DATA} format={formatValue} perPage={perPage} />
     </div>
   )
 }

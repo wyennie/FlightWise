@@ -18,6 +18,15 @@ section {
   text-align: center;
 }
 
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
 table.routes-table {
   border-collapse: collapse;
   margin: 0 auto;
