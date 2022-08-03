@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { Component } from 'react';
 import './App.css';
 import DATA from './data.js'
