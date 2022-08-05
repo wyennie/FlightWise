@@ -1,10 +1,13 @@
 // eslint-disable-next-line
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import DATA from './data.js'
-import Table from './components/Table';
+import Table from './components/Table'
+import Select from './components/Select'
 
 const App = () => {
+  const [selected, setSelected] = useState(DATA.routes)
+
   const perPage = 25
 
   const columns = [
@@ -21,6 +24,21 @@ const App = () => {
     }
   };
 
+  const handleSelectAirline = (event) => {
+    let airline_id = event.target.value
+
+    if (airline_id) {
+      let filteredList = DATA.routes.filter(airline => parseInt(airline.airline) === parseInt(airline_id))
+      setSelected(filteredList)
+    } else {
+      setSelected(DATA.routes)
+    }
+  }
+
+  const filteredAirlines = () => {
+    return DATA.airlines
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -31,7 +49,21 @@ const App = () => {
           Welcome to the app!
         </p>
       </section>
-      <Table className='routes-table' columns={columns} rows={DATA} format={formatValue} perPage={perPage} />
+      <Select 
+        options={filteredAirlines}
+        valueKey="id"
+        titleKey="name"
+        allTitle="All Airlines"
+        value=""
+        onSelect={handleSelectAirline}
+      />
+      <Table 
+        className='routes-table'
+        columns={columns}
+        rows={selected}
+        format={formatValue}
+        perPage={perPage}
+      />
     </div>
   )
 }
