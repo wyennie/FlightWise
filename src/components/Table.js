@@ -1,18 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Table = ({ columns, rows, format, perPage }) => {
-  const [page, setPage] = useState(0)
+const Table = ({ columns, rows, format, perPage, previousPage, nextPage, page }) => {
   const pageStart = page * perPage
-
-  const previousPage = (event) => {
-    event.preventDefault()
-    setPage(page - 1)
-  }
-
-  const nextPage = (event) => {
-    event.preventDefault()
-    setPage(page + 1)
-  }
 
   return (
     <section>

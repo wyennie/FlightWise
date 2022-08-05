@@ -6,9 +6,20 @@ import Table from './components/Table'
 import Select from './components/Select'
 
 const App = () => {
+  const [page, setPage] = useState(0)
   const [selected, setSelected] = useState(DATA.routes)
 
   const perPage = 25
+
+  const previousPage = (event) => {
+    event.preventDefault()
+    setPage(page - 1)
+  }
+
+  const nextPage = (event) => {
+    event.preventDefault()
+    setPage(page + 1)
+  }
 
   const columns = [
     { name: "Airline", property: "airline" },
@@ -30,8 +41,10 @@ const App = () => {
     if (airline_id) {
       let filteredList = DATA.routes.filter(airline => parseInt(airline.airline) === parseInt(airline_id))
       setSelected(filteredList)
+      setPage(0)
     } else {
       setSelected(DATA.routes)
+      setPage(0)
     }
   }
 
@@ -63,6 +76,9 @@ const App = () => {
         rows={selected}
         format={formatValue}
         perPage={perPage}
+        previousPage={previousPage}
+        nextPage={nextPage}
+        page={page}
       />
     </div>
   )
