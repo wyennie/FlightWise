@@ -65,9 +65,7 @@ const App = () => {
         <h1 className="title">Airline Routes</h1>
       </header>
       <section>
-        <p>
-          Welcome to the app!
-        </p>
+      
       </section>
       <Map 
         getCoOrdinates={getCoOrdinates}
