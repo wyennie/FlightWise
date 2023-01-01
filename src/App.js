@@ -4,6 +4,7 @@ import './App.css';
 import DATA from './data.js'
 import Table from './components/Table'
 import Select from './components/Select'
+import Map from './components/Map'
 
 const App = () => {
   const [page, setPage] = useState(0)
@@ -52,6 +53,12 @@ const App = () => {
     return DATA.airlines
   }
 
+  const getCoOrdinates = (route) => {
+    const source = DATA.airports.find(airport => airport.code === route.src);
+    const destination = DATA.airports.find(airport => airport.code === route.dest);
+    return [[source.lat, source.long], [destination.lat, destination.long]];
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -62,6 +69,10 @@ const App = () => {
           Welcome to the app!
         </p>
       </section>
+      <Map 
+        getCoOrdinates={getCoOrdinates}
+        selected={selected}
+      />
       <Select 
         options={filteredAirlines}
         valueKey="id"
